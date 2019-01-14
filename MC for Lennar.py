@@ -28,12 +28,14 @@ price_list[0] = S0
 
 for t in range(1,t_intervals):
      price_list[t] = price_list[t - 1] * daily_r[t]
+    
+WACC = 0.0931
 
-intrinsic_val = (price_list[t_intervals-1].mean()) / (1.0931)
+intrinsic_val = (price_list[t_intervals-1].mean()) / (1+WACC)
 print(intrinsic_val)
 plt.figure(figsize=(10,5))
 #plt.plot(price_list)
 plt.title("Lennar Monte Carlo")
 
-plt.hist((price_list[t_intervals-1]/1.0931), bins=100)
+plt.hist((price_list[t_intervals-1]/(1+WACC)), bins=100)
 plt.show()
